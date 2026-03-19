@@ -6,7 +6,6 @@ protected:
   - "pnpm-lock.yaml"
 
 agents:
-  # Dependency bots can touch lock files and manifests
   dependabot[bot]:
     allow:
       - "package.json"
@@ -15,8 +14,9 @@ agents:
     allow:
       - "package.json"
       - "pnpm-lock.yaml"
-
-  # For testing: boilerpot can touch Dockerfile without review
   boilerpot:
     allow:
       - "Dockerfile"
+
+agent_logins:
+  - "boilerpot"

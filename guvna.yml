@@ -2,3 +2,21 @@ protected:
   - "src/auth/**"
   - "migrations/**"
   - "Dockerfile"
+  - "package.json"
+  - "pnpm-lock.yaml"
+
+agents:
+  # Dependency bots can touch lock files and manifests
+  dependabot[bot]:
+    allow:
+      - "package.json"
+      - "pnpm-lock.yaml"
+  renovate[bot]:
+    allow:
+      - "package.json"
+      - "pnpm-lock.yaml"
+
+  # For testing: boilerpot can touch Dockerfile without review
+  boilerpot:
+    allow:
+      - "Dockerfile"

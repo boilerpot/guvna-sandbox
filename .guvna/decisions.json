@@ -1,0 +1,17 @@
+{
+  "decisions": [
+    {
+      "summary": "Added rate limiting middleware to auth endpoint",
+      "rationale": "Login endpoint had no throttling — vulnerable to credential stuffing. Added express-rate-limit with 10 req/min per IP.",
+      "risk_acknowledged": "Rate limit config may need tuning in production under load balancer (X-Forwarded-For trust)",
+      "files": ["src/auth/login.ts"],
+      "references": ["OWASP brute-force prevention", "issue #42"]
+    },
+    {
+      "summary": "Switched password hashing from SHA-256 to bcrypt",
+      "rationale": "SHA-256 is fast and unsuitable for password storage. bcrypt with cost factor 12 provides adaptive resistance.",
+      "risk_acknowledged": "bcrypt adds ~250ms latency per login — acceptable tradeoff for security",
+      "files": ["src/auth/login.ts", "package.json"]
+    }
+  ]
+}

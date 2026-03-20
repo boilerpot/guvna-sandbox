@@ -20,3 +20,5 @@ agents:
 
 agent_logins:
   - "boilerpot"
+
+show_agent_decisions: true
